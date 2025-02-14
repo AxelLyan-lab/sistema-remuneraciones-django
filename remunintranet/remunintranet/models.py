@@ -379,12 +379,12 @@ class TramoAsignacionFamiliar(models.Model):
         managed = False
         db_table = 'tramo_asignacion_familiar'
 
-
+#User Table
 class User(models.Model):
     id_user = models.AutoField(primary_key=True)
-    nombre_user = models.CharField(max_length=100)
+    username = models.CharField(max_length=100)
     contrasena_hashed = models.TextField()
-    correo = models.CharField(max_length=45)
+    correo = models.CharField(max_length=45, unique=True)
     fecha_creacion = models.DateField()
     estado = models.SmallIntegerField()
     id_tipo_user = models.ForeignKey('UserTipo', models.DO_NOTHING, db_column='id_tipo_user')

@@ -1,9 +1,5 @@
 """
 URL configuration for remunintranet project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
-Examples:
 Function views
     1. Add an import:  from my_app import views
     2. Add a URL to urlpatterns:  path('', views.home, name='home')
@@ -15,11 +11,28 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from . import views
+from django.urls import path, include
+from django.contrib.auth import views as auth_views
+from .views import RegistroUsuario,LoginUsuario
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 urlpatterns = [
+        #Entrar Al Panel De Administrador
+        path('admin/', admin.site.urls),
+        #Metodo Post de Registro de Usuario
+        path('api/register/', RegistroUsuario.as_view(), name='register'),
+        path('api/login/', LoginUsuario.as_view(), name='login'),
+]
+
+
+""" urlpatterns = [
+    
     path('admin/', admin.site.urls),
     path('', views.homepage),
     path('about/', views.about),
+    path('api/afp/',AfpList.as_view(),name='lista_afp').
+    path('api/afps/', AfpListView.as_view(), name='listar_afps'),
 ]
-    
+    """ 
